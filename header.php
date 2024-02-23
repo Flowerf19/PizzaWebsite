@@ -1,7 +1,7 @@
 <?php
 // Kết nối đến database
-require_once('Connect.php');
-require_once('Function.php');
+require_once('SQL/Connect.php');
+require_once('SQL/Function.php');
 ?>
 
 <!DOCTYPE html>
