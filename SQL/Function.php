@@ -60,6 +60,10 @@ function login($username, $password) {
             // Nếu khớp, lưu thông tin người dùng vào session và trả về true
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+
+               // Kiểm tra nếu userrole = 1 thì đặt authenticated thành true, ngược lại là false
+               $_SESSION['authenticated'] = ($user['role'] == 1) ? true : false;
             return true;
         }
     }
