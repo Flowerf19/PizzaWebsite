@@ -1,38 +1,34 @@
 <?php
 require_once('Lib/intialize.php');
 
-// Nếu người dùng đã đăng nhập, chuyển hướng đến trang chính
-// if (isset($_SESSION['username'])) {
-//     header("Location: index.php");
-//     exit;
-// }
-
 require_once('SQL/Function.php');
 require_once('SQL/Connect.php');
 
 $errors = [];
 
-function isFormValidated(){
+function isFormValidated()
+{
     global $errors;
     return count($errors) == 0;
 }
 
-function checkForm(){
+function checkForm()
+{
     global $errors;
-    if (empty($_POST['username'])){
+    if (empty($_POST['username'])) {
         $errors[] = 'Username is required';
     }
 
-    if (empty($_POST['pwd'])){
+    if (empty($_POST['pwd'])) {
         $errors[] = 'Password is required';
     }
 }
 
-if($_SERVER["REQUEST_METHOD"] == 'POST') {
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     checkForm();
-    if (isFormValidated()){
-        $username = isset($_POST['username'])? $_POST['username']: '';
-        $password = isset($_POST['pwd'])? $_POST['pwd']: '';
+    if (isFormValidated()) {
+        $username = isset($_POST['username']) ? $_POST['username'] : '';
+        $password = isset($_POST['pwd']) ? $_POST['pwd'] : '';
 
         // Ensure $db is initialized before using it
         if (!$db) {
@@ -51,44 +47,50 @@ if($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
     }
 } else { //form load
-    
+
 }
 
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <title>Login</title>
+    <link rel="stylesheet" href="Css/style.css">
 </head>
+
 <body>
-    <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()): ?> 
-        <div class="error">
-            <span> Please fix the following errors </span>
-            <ul>
-                <?php
-                foreach ($errors as $key => $value){
-                    if (!empty($value)){
-                        echo '<li>', $value, '</li>';
-                    }
-                }
-                ?>
-            </ul>
-        </div><br><br>
-    <?php endif; ?>
-    <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-        <label for="username">Username</label> <!--required-->
-        <input type="text" id="username" name="username"  
-        value="<?php echo isFormValidated()? '': $_POST['username'] ?>">
-        <br><br>
-
-        <label for="pwd">Password</label> <!--required-->
-        <input type="password" id="pwd" name="pwd"  
-        value="<?php echo isFormValidated()? '': $_POST['pwd'] ?>">
-        <br><br>
-
-        <input type="submit" name="submit" value="Login" />   
-    </form>
+    <div class="login-container">
+        <form class="login-form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+            <h2 class="text-center mb-4">Login</h2>
+            <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()) : ?>
+                <div class="error">
+                    Please fix the following errors:
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?php echo $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo isFormValidated() ? '' : $_POST['username']; ?>">
+            </div>
+            <br>
+            <br>
+            <div class="mb-3">
+                <label for="pwd" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pwd" name="pwd" value="<?php echo isFormValidated() ? '' : $_POST['pwd']; ?>">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <br>
+    <div class="text-center mt-3">
+        <a href="register.php">Don't have an account? Register here.</a>
+    </div>
 </body>
+
 </html>

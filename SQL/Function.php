@@ -1,23 +1,5 @@
 <?php
-require_once('SQL/Connect.php');
-function find_all_users()
-{
-    global $db;
-
-    $sql = "SELECT * FROM users ";
-    $sql .= "ORDER BY username";
-
-    // Check if $db is set and is a valid mysqli connection
-    if (!$db || !($db instanceof mysqli)) {
-        // Handle the error gracefully
-        return false;
-    }
-
-    $result = mysqli_query($db, $sql);
-
-    return confirm_query_result($result);
-}
-
+require_once('Connect.php');
 function find_all_categories()
 {
     global $db;
