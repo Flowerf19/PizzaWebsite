@@ -1,13 +1,10 @@
 CREATE DATABASE PizzaWebsite;
 
-SELECT PizzaWebsite
-
 CREATE TABLE categories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(255) NOT NULL,
     Description VARCHAR(255)
 );
-
 
 CREATE TABLE products (
     id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -18,27 +15,18 @@ CREATE TABLE products (
     image_url VARCHAR(255), 
     size INT,
     base TEXT,
-    phomai INT,
+    cheese VARCHAR(255), -- Corrected column name and data type
 
     CONSTRAINT fk_products_categories FOREIGN KEY (category_ID) REFERENCES categories(id) 
 ); 
 
-CREATE TABLE admins (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    password_hashed VARCHAR(255) NOT NULL
-    
-);
-
 CREATE TABLE users (
-    user_ID INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL UNIQUE, 
-    password_hashed VARCHAR(255) NOT NULL, 
-    email VARCHAR(255) NOT NULL UNIQUE, 
-    address VARCHAR(255)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  hashpassword VARCHAR(255) NOT NULL,
+  role INT DEFAULT 2
 );
-
 
 INSERT INTO categories (category_name, Description) 
 VALUES 
@@ -46,24 +34,14 @@ VALUES
     ('Specialty', 'Pizzas with unique toppings and flavors'),
     ('Vegetarian', 'Meat-free pizza options');
 
-INSERT INTO products (products_name, category_ID, description, image_url, size, base, phomai)
+INSERT INTO products (products_name, category_ID, description, image_url, size, base, cheese)
 VALUES
-    ('Pepperoni Pizza', 1, 'Classic pepperoni and cheese', 'https://example.com/pepperoni.jpg', 12, 'Thin Crust', 1),
-    ('BBQ Chicken Pizza', 2, 'BBQ sauce, chicken, onions, and cheese', 'https://example.com/bbqchicken.jpg', 14, 'Hand Tossed', 1),
-    ('Veggie Delight', 3, 'Mushrooms, onions, peppers, and olives', 'https://example.com/veggie.jpg', 10, 'Gluten-Free', 0);
+    ('Pepperoni Pizza', 1, 'Classic pepperoni and cheese', 'https://example.com/pepperoni.jpg', 12, 'Thin Crust', 'Mozzarella'),
+    ('BBQ Chicken Pizza', 2, 'BBQ sauce, chicken, onions, and cheese', 'https://example.com/bbqchicken.jpg', 14, 'Hand Tossed', 'Cheddar'),
+    ('Veggie Delight', 3, 'Mushrooms, onions, peppers, and olives', 'https://example.com/veggie.jpg', 10, 'Gluten-Free', 'None');
 
--- Replace with the results of your password hashing function
-INSERT INTO admins (email, name, password_hashed)
-VALUES
-    ('admin@pizzawebsite.com', 'Nguyen Hoa', '1234@123'),  
-    ('nhatnmgch211402@fpt.edu.vn', 'Nhat Minh', '123456'), 
-    ('vietnthgch211316@fpt.edu.vn', 'Hoang Viet', '123456'); 
-    
--- Replace with the results of your password hashing function
-INSERT INTO users (username, password_hashed, email, address)
-VALUES
-    ('Flowerf', '1234@123', 'sarah.johnson@email.com', '123 Main Street, Anytown USA'),
-    ('Nhat_Minh', '123456', 'john.doe@email.com', '456 Elm Street, Sometown USA'), 
-    ('Hoang_Viet', '123456', 'jane.smith@email.com', '789 Oak Street, Othertown, USA');
-
-
+INSERT INTO users (username, email, hashpassword, role) 
+VALUES 
+    ('Nguyen Hoa', 'nguyenhoa@example.com', '123', 1),
+    ('NhatMinh', 'nhatminh@example.com', '123', 1),
+    ('AnotherUser', 'anotheruser@example.com', '123', 1);

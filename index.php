@@ -6,7 +6,7 @@
     <title>Pizza Website</title>
 </head>
 <?php
-require_once('header.php')
+require_once('header.php');
 ?>
 <body>
     

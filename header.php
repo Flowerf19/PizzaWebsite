@@ -1,7 +1,13 @@
 <?php
 // Kết nối đến database
+require_once('Lib/intialize.php');
+
+
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
+
+// Retrieve categories
+$categories_set = find_all_categories();
 ?>
 
 <!DOCTYPE html>
@@ -20,14 +26,25 @@ require_once('SQL/Function.php');
         <h1>Pizza Website</h1>
         <ul>
             <?php
-            $categories_set = find_all_categories();
-            while ($category = mysqli_fetch_assoc($categories_set)):
+            // Loop through categories if available
+            if ($categories_set) {
+                while ($category = mysqli_fetch_assoc($categories_set)):
             ?>
-                <li><a href="#"><?php echo $category["category_name"]; ?></a></li>
-            <?php endwhile; ?>
+                    <li><a href="#"><?php echo $category["category_name"]; ?></a></li>
+            <?php
+                endwhile;
+            } else {
+                // Handle no categories found
+                echo "<li>No categories found</li>";
+            }
+            ?>
             <li><a href="cart.php">Cart</a></li>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="logout.php">Logout</a></li>
+            <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else : ?>
+                <li><a href="login.php">Login</a></li>
+            <?php endif; ?>
             <li>
                 <form action="search.php" method="GET">
                     <input type="text" name="query" placeholder="Find Pizza...">
