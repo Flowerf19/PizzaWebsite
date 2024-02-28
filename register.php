@@ -68,9 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="Css/style.css">
 </head>
-<body>
-    <h2>Register</h2>
+<body class="login-container">
+    <h2 class="text-center mb-4">Register</h2>
     <?php if (!empty($errors)): ?>
         <div class="error">
             <ul>
@@ -80,16 +81,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </ul>
         </div>
     <?php endif; ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ''; ?>"><br><br>
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password"><br><br>
-        <input type="submit" value="Register">
+    <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ''; ?>">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" id="email" name="email" class="form-control" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </body>
 </html>
