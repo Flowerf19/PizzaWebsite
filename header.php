@@ -25,7 +25,12 @@ $categories_set = find_all_categories();
     <header>
         <h1>Pizza Website</h1>
         <ul>
-            <?php
+            <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            <?php else : ?>
+                <li><a href="login.php">Login</a></li>
+                <?php
             // Loop through categories if available
             if ($categories_set) {
                 while ($category = mysqli_fetch_assoc($categories_set)):
@@ -39,11 +44,6 @@ $categories_set = find_all_categories();
             }
             ?>
             <li><a href="cart.php">Cart</a></li>
-            <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
-                <li><a href="profile.php">Profile</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            <?php else : ?>
-                <li><a href="login.php">Login</a></li>
             <?php endif; ?>
             <li>
                 <form action="search.php" method="GET">

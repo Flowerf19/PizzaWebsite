@@ -1,12 +1,6 @@
 <?php
 require_once('Lib/intialize.php');
 
-// Nếu người dùng đã đăng nhập, chuyển hướng đến trang chính
-// if (isset($_SESSION['username'])) {
-//     header("Location: index.php");
-//     exit;
-// }
-
 require_once('SQL/Function.php');
 require_once('SQL/Connect.php');
 
@@ -62,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST') {
     <meta charset="utf-8" />
     <title>Login</title>
 </head>
-<body>
+<body class = "login_body">
     <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()): ?> 
         <div class="error">
             <span> Please fix the following errors </span>
