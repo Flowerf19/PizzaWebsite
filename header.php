@@ -28,7 +28,7 @@ $categories_set = find_all_categories();
         <ul>
 
             <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
-                <li><a href="admin/manageUsers.php">Manage Users</a></li>
+                <li><a href="manageUsers.php">Manage Users</a></li>
                 <li><a href="cart.php">Manage categories</a></li>
                 <li><a href="cart.php">Manage Products</a></li>
                 <li><a href="#"><?php echo 'Hello ' . $_SESSION['username']; ?></a></li>
