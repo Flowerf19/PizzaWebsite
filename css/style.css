@@ -6,50 +6,67 @@ body {
     padding: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between; /* Ensure items are spaced out */
-    align-items: center; /* Center items vertically */
-}
-
-header h1 {
-    margin: 0;
-    padding: 0;
-}
-
-header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-header ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-header ul li a {
+/* header {
+    background-image: linear-gradient(to right, #6d6733, #b29a2c);
     color: #fff;
-    text-decoration: none;
+    padding: 10px 20px;
+} */
+
+header {
+    background-image: linear-gradient(to right, #6d6733, #b29a2c);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Background color for header */
 }
 
-header form {
-    display: inline;
+.logo img {
+    height: 70px; /* Adjust height as needed */
 }
 
-header input[type="text"] {
-    padding: 5px;
-    border-radius: 3px;
+.main-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-menu li {
+    margin-left: 50px; /* Add space between menu items */
+    font-size: x-large;
+}
+
+.main-menu form {
+    margin-left: 20px; /* Add space between menu items and search form */
+}
+
+.main-menu input[type="text"] {
+    padding: 4px;
     border: 1px solid #ccc;
+    border-radius: 10px;
 }
 
-header button[type="submit"] {
-    padding: 5px 10px;
-    border-radius: 3px;
+.main-menu button[type="submit"] {
+    color: #fff;
     border: none;
-    background-color: #4CAF50;
-    color: white;
     cursor: pointer;
+    border-radius: 10px;
+}
+
+.main-menu button[type="submit"]:hover {
+    background-color: #cfc13b;
+}
+
+
+/* Adjust styles for links */
+.main-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.main-menu a:hover {
+    color: #007bff;
 }
 
 
