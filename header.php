@@ -1,8 +1,6 @@
 <?php
 // Kết nối đến database
 require_once('Lib/intialize.php');
-
-
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
 
@@ -24,12 +22,12 @@ $categories_set = find_all_categories();
 
 <body>
     <header>
-        <h1>Pizza Website</h1>
+        <h1 > <a href="index.php">Pizza Website </a></h1>
         <ul>
 
             <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
                 <li><a href="manageUsers.php">Manage Users</a></li>
-                <li><a href="cart.php">Manage categories</a></li>
+                <li><a href="manageCategories.php">Manage categories</a></li>
                 <li><a href="cart.php">Manage Products</a></li>
                 <li><a href="#"><?php echo 'Hello ' . $_SESSION['username']; ?></a></li>
                 <li><a href="logout.php">Logout</a></li>
@@ -54,8 +52,8 @@ $categories_set = find_all_categories();
                         <button type="submit">Search Pizza</button>
                     </form>
                 </li>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="login.php">Login</a></li>
+                <li><a  href="cart.php">Cart</a></li>
+                <li><a  href="login.php">Login</a></li>
 
             <?php endif; ?>
 

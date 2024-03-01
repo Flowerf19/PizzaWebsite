@@ -20,9 +20,6 @@ function find_all_users()
 
     return confirm_query_result($result);
 }
-
-=======
-
 function find_all_categories()
 {
     global $db;
@@ -33,8 +30,79 @@ function find_all_categories()
 
     return confirm_query_result($result);
 }
+function insert_category($category) {
+    global $db;
 
-function register_user($username, $email, $hashpassword) {
+    // Escape input to prevent SQL injection
+    $category_name = mysqli_real_escape_string($db, $category['category_name']);
+    $description = mysqli_real_escape_string($db, $category['description']);
+
+    $sql = "INSERT INTO categories ";
+    $sql .= "(category_name, Description) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $category_name . "',";
+    $sql .= "'" . $description . "'";
+    $sql .= ")";
+
+    $result = mysqli_query($db, $sql);
+    if (!$result) {
+        // Error handling if query fails
+        echo "Error: " . mysqli_error($db);
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+function find_category_by_id($id) {
+    global $db;
+
+    $sql = "SELECT * FROM categories ";
+    $sql .= "WHERE id='" . $id . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_query_result($result);
+    $category = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $category; // returns an assoc. array
+}
+function update_category($category) {
+    global $db;
+
+    $sql = "UPDATE categories SET ";
+    $sql .= "category_name='" . $category['category_name'] . "', ";
+    $sql .= "Description='" . $category['description'] . "' ";
+    $sql .= "WHERE id='" . $category['id'] . "' ";
+    $sql .= "LIMIT 1";
+
+    $result = mysqli_query($db, $sql);
+    return confirm_query_result($result);
+}
+
+function delete_category($category_id) {
+    global $db;
+    
+    // Sanitize the input to prevent SQL injection
+    $category_id = mysqli_real_escape_string($db, $category_id);
+    
+    // Construct the SQL query
+    $sql = "DELETE FROM categories ";
+    $sql .= "WHERE id = '{$category_id}' ";
+    $sql .= "LIMIT 1";
+
+    // Perform the deletion
+    $result = mysqli_query($db, $sql);
+    
+    // Check if the deletion was successful
+    if ($result && mysqli_affected_rows($db) == 1) {
+        return true; // Deletion successful
+    } else {
+        return false; // Deletion failed
+    }
+}
+
+function register_user($username, $email, $hashpassword)
+{
     global $db;
 
     // Escape các giá trị để tránh SQL Injection
@@ -63,7 +131,8 @@ function register_user($username, $email, $hashpassword) {
 }
 
 // Thêm hàm đăng nhập vào mã PHP hiện tại
-function login($username, $password) {
+function login($username, $password)
+{
     global $db;
 
     // Escape tên người dùng để tránh SQL Injection
@@ -85,8 +154,8 @@ function login($username, $password) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
 
-               // Kiểm tra nếu userrole = 1 thì đặt authenticated thành true, ngược lại là false
-               $_SESSION['authenticated'] = ($user['role'] == 1) ? true : false;
+            // Kiểm tra nếu userrole = 1 thì đặt authenticated thành true, ngược lại là false
+            $_SESSION['authenticated'] = ($user['role'] == 1) ? true : false;
             return true;
         }
     }
@@ -94,5 +163,3 @@ function login($username, $password) {
     // Trả về false nếu không tìm thấy người dùng hoặc mật khẩu không khớp
     return false;
 }
-
-?>

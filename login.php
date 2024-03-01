@@ -3,6 +3,7 @@ require_once('Lib/intialize.php');
 
 require_once('SQL/Function.php');
 require_once('SQL/Connect.php');
+require_once('header.php');
 
 $errors = [];
 
@@ -52,20 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link rel="stylesheet" href="Css/style.css">
-</head>
-
 <body>
     <div class="login-container">
         <form class="login-form" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
             <h2 class="text-center mb-4">Login</h2>
             <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()) : ?>
                 <div class="error">
-                    Please fix the following errors:
                     <ul>
                         <?php foreach ($errors as $error) : ?>
                             <li><?php echo $error; ?></li>
@@ -83,14 +76,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                 <label for="pwd" class="form-label">Password</label>
                 <input type="password" class="form-control" id="pwd" name="pwd" value="<?php echo isFormValidated() ? '' : $_POST['pwd']; ?>">
             </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="text-center mt-3">
+                <a href="register.php">Don't have an account? Register here.</a>
+            </div>
         </form>
     </div>
     <br>
-    <div class="text-center mt-3">
-        <a href="register.php">Don't have an account? Register here.</a>
-    </div>
+
 </body>
 
 </html>

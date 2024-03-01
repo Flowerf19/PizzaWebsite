@@ -1,5 +1,8 @@
 <?php
 require_once('Lib/intialize.php');
+require_once('SQL/Connect.php');
+require_once('SQL/Function.php');
+require_once('header.php');
 
 // Nếu người dùng đã đăng nhập, chuyển hướng đến trang chính
 if (isset($_SESSION['username'])) {
@@ -9,8 +12,7 @@ if (isset($_SESSION['username'])) {
 
 // Bao gồm tệp kết nối cơ sở dữ liệu và các chức năng
 
-require_once('SQL/Connect.php');
-require_once('SQL/Function.php');
+
 
 // Biến lưu trữ lỗi
 $errors = [];
@@ -62,47 +64,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="Css/style.css">
-</head>
-<body class="login-container">
-    <h2 class="text-center mb-4">Register</h2>
-    <?php if (!empty($errors)): ?>
-        <div class="error">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?php echo $error; ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
-    <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="mb-3">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" id="username" name="username" class="form-control" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ''; ?>">
-        </div>
-        <br>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="text" id="email" name="email" class="form-control" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
-        </div>
-        <br>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" id="password" name="password" class="form-control">
-        </div>
-        <br>
-        <div class="mb-3">
-            <label for="confirm_password" class="form-label">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" class="form-control">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
+<body>
+    <div class="login-container">
+        <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <h2 class="text-center mb-4">Register</h2>
+            <?php if (!empty($errors)) : ?>
+                <div class="error">
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?php echo $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
