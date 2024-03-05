@@ -186,4 +186,26 @@ function find_latest_pizzas($limit)
     return confirm_query_result($result);
 }
 
+
+function find_products_pagination($limit, $offset) {
+    global $db;
+
+    // Construct the SQL query
+    $sql = "SELECT COUNT(*) AS total_count FROM products"; // Get the total count
+    $result_count = mysqli_query($db, $sql);
+    $row = mysqli_fetch_assoc($result_count);
+    $total_count = $row['total_count'];
+
+    // Construct the SQL query for fetching products with pagination
+    $sql = "SELECT * FROM products ";
+    $sql .= "ORDER BY products_name ";
+    $sql .= "LIMIT {$limit} OFFSET {$offset}";
+
+    // Perform the query
+    $result = mysqli_query($db, $sql);
+
+    // Check if the query was successful
+    return array($result, $total_count);
+}
+
 ?>

@@ -2,15 +2,10 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
-
-/* header {
-    background-image: linear-gradient(to right, #6d6733, #b29a2c);
-    color: #fff;
-    padding: 10px 20px;
-} */
 
 header {
     background-image: linear-gradient(to right, #6d6733, #b29a2c);
@@ -18,11 +13,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #f8f9fa; /* Background color for header */
+    background-color: #f8f9fa;
+    /* Background color for header */
 }
 
 .logo img {
-    height: 70px; /* Adjust height as needed */
+    height: 70px;
+    /* Adjust height as needed */
 }
 
 .main-menu {
@@ -33,12 +30,14 @@ header {
 }
 
 .main-menu li {
-    margin-left: 50px; /* Add space between menu items */
+    margin-left: 50px;
+    /* Add space between menu items */
     font-size: x-large;
 }
 
 .main-menu form {
-    margin-left: 20px; /* Add space between menu items and search form */
+    margin-left: 20px;
+    /* Add space between menu items and search form */
 }
 
 .main-menu input[type="text"] {
@@ -134,111 +133,134 @@ header {
 }
 
 footer {
-    background-color: #333; /* Màu nền */
-    color: #fff; /* Màu chữ */
-    padding: 50px 0; /* Khoảng cách giữa nội dung và các biên của footer */
+    background-color: #333;
+    /* Màu nền */
+    color: #fff;
+    /* Màu chữ */
+    padding: 50px 0;
+    /* Khoảng cách giữa nội dung và các biên của footer */
 }
 
 footer .container {
-    max-width: 1200px; /* Chiều rộng tối đa của footer */
-    margin: 0 auto; /* Canh giữa footer */
+    max-width: 1200px;
+    /* Chiều rộng tối đa của footer */
+    margin: 0 auto;
+    /* Canh giữa footer */
 }
 
 footer h3 {
-    color: #fff; /* Màu chữ cho tiêu đề */
+    color: #fff;
+    /* Màu chữ cho tiêu đề */
 }
 
 footer p {
-    margin: 5px 0; /* Khoảng cách giữa các dòng chữ */
+    margin: 5px 0;
+    /* Khoảng cách giữa các dòng chữ */
 }
 
 footer ul {
-    list-style-type: none; /* Xóa dấu đầu dòng của danh sách */
-    padding: 0; /* Xóa padding mặc định */
+    list-style-type: none;
+    /* Xóa dấu đầu dòng của danh sách */
+    padding: 0;
+    /* Xóa padding mặc định */
 }
 
 footer ul li {
-    margin-bottom: 10px; /* Khoảng cách giữa các mục danh sách */
+    margin-bottom: 10px;
+    /* Khoảng cách giữa các mục danh sách */
 }
 
 footer ul li a {
-    color: #fff; /* Màu chữ cho liên kết */
-    text-decoration: none; /* Xóa gạch chân dưới của liên kết */
+    color: #fff;
+    /* Màu chữ cho liên kết */
+    text-decoration: none;
+    /* Xóa gạch chân dưới của liên kết */
 }
 
 footer ul li a:hover {
-    text-decoration: underline; /* Hiển thị gạch chân dưới khi di chuột qua liên kết */
+    text-decoration: underline;
+    /* Hiển thị gạch chân dưới khi di chuột qua liên kết */
 }
 
 footer .social-icons {
-    list-style-type: none; /* Xóa dấu đầu dòng của danh sách icon */
-    padding: 0; /* Xóa padding mặc định */
+    list-style-type: none;
+    /* Xóa dấu đầu dòng của danh sách icon */
+    padding: 0;
+    /* Xóa padding mặc định */
 }
 
 footer .social-icons li {
-    display: inline-block; /* Hiển thị các icon cạnh nhau */
-    margin-right: 10px; /* Khoảng cách giữa các icon */
+    display: inline-block;
+    /* Hiển thị các icon cạnh nhau */
+    margin-right: 10px;
+    /* Khoảng cách giữa các icon */
 }
 
 footer .social-icons li:last-child {
-    margin-right: 0; /* Không có margin bên phải cho icon cuối cùng */
+    margin-right: 0;
+    /* Không có margin bên phải cho icon cuối cùng */
 }
 
 footer .social-icons li a {
-    color: #fff; /* Màu icon */
+    color: #fff;
+    /* Màu icon */
 }
 
 footer .social-icons li a:hover {
-    color: #ccc; /* Màu icon khi di chuột qua */
+    color: #ccc;
+    /* Màu icon khi di chuột qua */
 }
 
-/* Style for product container */
-/* Thiết lập padding và margin mặc định cho toàn bộ trang */
 
-/* Kiểu cho sản phẩm */
-/* CSS cho container của sản phẩm */
-.product-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+/* Định dạng tiêu đề */
+h2 {
+    color: #FFD700; /* Màu vàng */
+}
+
+/* Định dạng sản phẩm */
+.product {
+    border: 1px solid #FF0000; /* Viền đỏ */
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #FFFFFF; /* Nền trắng */
 }
 
-/* CSS cho tiêu đề của sản phẩm */
-.product-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+.product h4 {
+    color: #FF0000; /* Màu đỏ cho tiêu đề sản phẩm */
 }
 
-/* CSS cho hình ảnh của sản phẩm */
-.product-image {
-    width: 100%;
+.product img {
+    max-width: 100%;
     height: auto;
-    border-radius: 8px;
 }
 
-/* CSS cho giá của sản phẩm */
-.product-price {
-    font-size: 14px;
-    color: #888;
-    margin-top: 5px;
+.product p {
+    color: #000000; /* Màu đen cho giá sản phẩm */
 }
 
-/* CSS cho nút mua sản phẩm */
-.buy-button {
+.pagination-container {
+    text-align: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.pagination {
     display: inline-block;
+}
+
+.pagination a {
+    color: rgb(238, 184, 69);
+    float: left;
     padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
     background-color: #4CAF50;
     color: white;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border: 1px solid #4CAF50;
 }
 
-.buy-button:hover {
-    background-color: #45a049;
-}
+.pagination a:hover:not(.active) {background-color: #ddd;}
