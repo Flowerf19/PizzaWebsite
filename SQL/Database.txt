@@ -11,7 +11,7 @@ CREATE TABLE products (
     products_name VARCHAR(255) NOT NULL,
     category_ID INT NOT NULL,
     description VARCHAR(255), 
-    name INT, 
+    price DOUBLE, 
     image_url VARCHAR(255), 
     size INT,
     base TEXT,
@@ -19,6 +19,10 @@ CREATE TABLE products (
 
     CONSTRAINT fk_products_categories FOREIGN KEY (category_ID) REFERENCES categories(id) 
 ); 
+
+ALTER TABLE products
+ADD COLUMN created_at DATETIME;
+
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,14 +38,77 @@ VALUES
     ('Specialty', 'Pizzas with unique toppings and flavors'),
     ('Vegetarian', 'Meat-free pizza options');
 
-INSERT INTO products (products_name, category_ID, description, image_url, size, base, cheese)
-VALUES
-    ('Pepperoni Pizza', 1, 'Classic pepperoni and cheese', 'https://example.com/pepperoni.jpg', 12, 'Thin Crust', 'Mozzarella'),
-    ('BBQ Chicken Pizza', 2, 'BBQ sauce, chicken, onions, and cheese', 'https://example.com/bbqchicken.jpg', 14, 'Hand Tossed', 'Cheddar'),
-    ('Veggie Delight', 3, 'Mushrooms, onions, peppers, and olives', 'https://example.com/veggie.jpg', 10, 'Gluten-Free', 'None');
+
 
 INSERT INTO users (username, email, hashpassword, role) 
 VALUES 
-    ('Nguyen Hoa', 'nguyenhoa@example.com', '123', 1),
+    ('NguyenHoa', 'nguyenhoa@example.com', '123', 1),
     ('NhatMinh', 'nhatminh@example.com', '123', 1),
     ('AnotherUser', 'anotheruser@example.com', '123', 1);
+    
+-- Example 1
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Pepperoni Pizza', 1, 'Classic pepperoni pizza with tomato sauce and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 2
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Supreme Pizza', 2, 'Specialty pizza loaded with pepperoni, sausage, onions, peppers, and mushrooms', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
+
+-- Example 3
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Margherita Pizza', 1, 'Classic Margherita pizza with fresh tomato sauce, mozzarella cheese, and basil leaves', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 4
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Vegetarian Pizza', 3, 'Vegetarian pizza topped with bell peppers, onions, olives, mushrooms, and tomatoes', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 5
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('BBQ Chicken Pizza', 2, 'Specialty pizza featuring BBQ chicken, red onions, and cilantro', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
+
+-- Example 6
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Hawaiian Pizza', 1, 'Classic Hawaiian pizza with ham, pineapple, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 7
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Mushroom Pizza', 3, 'Vegetarian pizza topped with mushrooms, onions, and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 8
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Meat Lover\'s Pizza', 2, 'Specialty pizza loaded with pepperoni, sausage, bacon, and ham', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
+
+-- Example 9
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Cheese Pizza', 1, 'Classic cheese pizza with tomato sauce and mozzarella cheese', 9.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+-- Example 10
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES ('Veggie Delight Pizza', 3, 'Vegetarian pizza topped with bell peppers, onions, tomatoes, and black olives', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES 
+    ('Vegetable Pizza', 3, 'Vegetarian pizza topped with a variety of fresh vegetables', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Buffalo Chicken Pizza', 2, 'Specialty pizza featuring spicy buffalo chicken and blue cheese dressing', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('White Pizza', 1, 'Classic pizza made with garlic-infused olive oil, ricotta cheese, and spinach', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Barbecue Beef Pizza', 2, 'Specialty pizza topped with barbecue beef, red onions, and cheddar cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('Spinach and Feta Pizza', 3, 'Vegetarian pizza with spinach, feta cheese, onions, and black olives', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Meatball Pizza', 1, 'Classic pizza topped with homemade meatballs, marinara sauce, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Pesto Chicken Pizza', 2, 'Specialty pizza featuring pesto sauce, grilled chicken, sun-dried tomatoes, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('Four Cheese Pizza', 1, 'Classic pizza topped with a blend of four cheeses: mozzarella, cheddar, provolone, and parmesan', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Vegan Pizza', 3, 'Vegetarian pizza made with dairy-free cheese, assorted vegetables, and marinara sauce', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Vegan cheese'),
+    ('BBQ Pork Pizza', 2, 'Specialty pizza topped with barbecue pork, caramelized onions, and pineapple', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
+
+INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
+VALUES 
+    ('Mediterranean Pizza', 1, 'Classic pizza topped with roasted red peppers, olives, artichokes, feta cheese, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('BBQ Bacon Chicken Pizza', 2, 'Specialty pizza featuring barbecue sauce, bacon, grilled chicken, red onions, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('Pineapple and Jalapeno Pizza', 3, 'Vegetarian pizza with pineapple chunks, sliced jalapenos, marinara sauce, and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Chicken Pesto Pizza', 2, 'Specialty pizza topped with pesto sauce, grilled chicken, sun-dried tomatoes, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('Buffalo Cauliflower Pizza', 3, 'Vegetarian pizza with buffalo cauliflower, red onions, and ranch drizzle', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Artichoke and Olive Pizza', 1, 'Classic pizza topped with artichoke hearts, black olives, marinara sauce, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
+    ('Shrimp Scampi Pizza', 2, 'Specialty pizza featuring garlic butter shrimp, lemon zest, parsley, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
+    ('Eggplant Parmesan Pizza', 3, 'Vegetarian pizza with breaded eggplant slices, marinara sauce, and parmesan cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+
+
