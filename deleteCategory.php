@@ -1,4 +1,5 @@
 <?php
+authenticated();
 require_once('Lib/intialize.php');
 require_once('SQL/Function.php');
 
@@ -24,4 +25,8 @@ if (isset($_GET['id'])) {
 } else {
     echo "Category ID not provided.";
 }
+?>
+<?php
+require_once('footer.php');
+db_disconnect($db);
 ?>

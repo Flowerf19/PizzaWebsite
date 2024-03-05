@@ -1,4 +1,8 @@
 <?php
+require_once('Lib/intialize.php');
+require_once('SQL/Connect.php');
+require_once('SQL/Function.php');
+authenticated();
 require_once('header.php');
 ?>
 <body>
@@ -23,7 +27,7 @@ require_once('header.php');
                 echo "<td>" . $users["username"] . "</td>";
                 echo "<td>" . $users["email"] . "</td>";
                 echo "<td>
-                        <a href='edit.php?id=" . $users["id"] . "'>Edit</a>
+                        <a href='editUsers.php?id=" . $users["id"] . "'>Edit</a>
                         <a href='deleteUser.php?id=" . $users["id"] . "'>Delete</a>
                       </td>";
                 echo "</tr>";
@@ -36,5 +40,8 @@ require_once('header.php');
             echo "<li>No users found</li>";
         }
         ?>
-
+<?php
+// require_once('footer.php');
+db_disconnect($db);
+?>
 </html>

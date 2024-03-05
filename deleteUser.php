@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Information</title>
-</head>
-<body>
-
 <?php
+authenticated();
 require_once('SQL/Function.php');
-
 // Xác định hàm để xóa người dùng
 function delete_user($user_id) {
     global $db;
@@ -42,3 +33,7 @@ if (isset($_GET['id'])) {
 
 </body>
 </html>
+<?php
+require_once('footer.php');
+db_disconnect($db);
+?>

@@ -99,6 +99,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
+    <?php
+    require_once('footer.php');
+    db_disconnect($db);
+    ?>
+
+    </html>
 </body>
+
+<?php
+require_once('footer.php');
+db_disconnect($db);
+?>
 
 </html>

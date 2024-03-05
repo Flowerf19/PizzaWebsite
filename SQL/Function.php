@@ -25,7 +25,6 @@ function find_all_categories()
     global $db;
 
     $sql = "SELECT * FROM categories ";
-    $sql .= "ORDER BY category_name";
     $result = mysqli_query($db, $sql);
 
     return confirm_query_result($result);
@@ -163,3 +162,28 @@ function login($username, $password)
     // Trả về false nếu không tìm thấy người dùng hoặc mật khẩu không khớp
     return false;
 }
+function find_all_products()
+{
+    global $db;
+
+    $sql = "SELECT * FROM products ";
+    $sql .= "ORDER BY products_name";
+    $result = mysqli_query($db, $sql);
+
+    return confirm_query_result($result);
+}
+
+function find_latest_pizzas($limit)
+{
+    global $db;
+
+    $sql = "SELECT * FROM products ";
+    $sql .= "ORDER BY id DESC "; // Sắp xếp theo ID giảm dần để lấy sản phẩm mới nhất
+    $sql .= "LIMIT " . $limit; // Giới hạn số lượng sản phẩm lấy ra
+
+    $result = mysqli_query($db, $sql);
+
+    return confirm_query_result($result);
+}
+
+?>

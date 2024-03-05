@@ -5,6 +5,7 @@ require_once('SQL/Function.php');
 require_once('SQL/Connect.php');
 require_once('header.php');
 
+
 $errors = [];
 
 function isFormValidated()
@@ -85,7 +86,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         </form>
     </div>
     <br>
-
+    <?php
+    require_once('footer.php');
+    ?>
 </body>
 
 </html>

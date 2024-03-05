@@ -1,7 +1,10 @@
 <?php
+
 require_once('Lib/intialize.php');
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
+require_once('header.php');
+authenticated();
 $errors = [];
 
 function isFormValidated()
@@ -80,12 +83,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <?php endif; ?>
 
     <br><br>
-    <a href="index.php">Back to index</a>
+    <a href="manageCategories.php"><i class="fa-solid fa-backward"> Back</i></a>
 </body>
 
 </html>
 
 
 <?php
+require_once('footer.php');
 db_disconnect($db);
 ?>

@@ -3,6 +3,7 @@ require_once('Lib/intialize.php');
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
 require_once('header.php');
+authenticated();
 ?>
 <body>
     <a href="newCategory.php">Create new category</a> <br><br>
@@ -36,5 +37,7 @@ require_once('header.php');
 </html>
 
 <?php
+require_once('footer.php');
 db_disconnect($db);
+?>
 ?>

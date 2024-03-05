@@ -27,11 +27,12 @@ $categories_set = find_all_categories();
         </a>
         <nav>
             <ul class="main-menu">
+            <li><a href="index.php">Home</a></li>
                 <?php if (isset($_SESSION['authenticated']) && $_SESSION['authenticated']) : ?>
                     <li><a href="manageUsers.php">Manage Users</a></li>
                     <li><a href="manageCategories.php">Manage Categories</a></li>
                     <li><a href="cart.php">Manage Products</a></li>
-                    <li><a href="#"><?php echo '<i class="fa-solid fa-user"></i> ' . $_SESSION['username']; ?></a></li>
+                    <li><a href="#"><i class="fa-solid fa-user"></i> <?php echo $_SESSION['username']; ?></a></li>
                     <li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                 <?php else : ?>
                     <?php
@@ -47,14 +48,27 @@ $categories_set = find_all_categories();
                         echo "<li>No categories found</li>";
                     }
                     ?>
+
                     <li>
                         <form action="search.php" method="GET">
                             <input type="text" name="query" placeholder="Find Pizza...">
                             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </li>
-                    <li ><a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                    <li><a href="login.php"><i class="fa-solid fa-user"></i></a></li>
+                    <li><a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <?php
+                    if (isset($_SESSION['username'])) {
+                        echo '<li><a href="#"><i class="fa-solid fa-user"></i> ' . $_SESSION['username'] . '</a></li>';
+                        echo '<li><a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i></a></li>';
+                    }
+                    ?>
+
+                    <?php
+                    if (!isset($_SESSION['username'])) {
+                        echo '<li><a href="login.php"><i class="fa-solid fa-user"></i></a></li>';
+                    }
+                    ?>
+
                 <?php endif; ?>
             </ul>
         </nav>

@@ -48,6 +48,7 @@ header {
 }
 
 .main-menu button[type="submit"] {
+    background-color: #6d6733;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -132,3 +133,112 @@ header {
     background-color: #0056b3;
 }
 
+footer {
+    background-color: #333; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    padding: 50px 0; /* Khoảng cách giữa nội dung và các biên của footer */
+}
+
+footer .container {
+    max-width: 1200px; /* Chiều rộng tối đa của footer */
+    margin: 0 auto; /* Canh giữa footer */
+}
+
+footer h3 {
+    color: #fff; /* Màu chữ cho tiêu đề */
+}
+
+footer p {
+    margin: 5px 0; /* Khoảng cách giữa các dòng chữ */
+}
+
+footer ul {
+    list-style-type: none; /* Xóa dấu đầu dòng của danh sách */
+    padding: 0; /* Xóa padding mặc định */
+}
+
+footer ul li {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục danh sách */
+}
+
+footer ul li a {
+    color: #fff; /* Màu chữ cho liên kết */
+    text-decoration: none; /* Xóa gạch chân dưới của liên kết */
+}
+
+footer ul li a:hover {
+    text-decoration: underline; /* Hiển thị gạch chân dưới khi di chuột qua liên kết */
+}
+
+footer .social-icons {
+    list-style-type: none; /* Xóa dấu đầu dòng của danh sách icon */
+    padding: 0; /* Xóa padding mặc định */
+}
+
+footer .social-icons li {
+    display: inline-block; /* Hiển thị các icon cạnh nhau */
+    margin-right: 10px; /* Khoảng cách giữa các icon */
+}
+
+footer .social-icons li:last-child {
+    margin-right: 0; /* Không có margin bên phải cho icon cuối cùng */
+}
+
+footer .social-icons li a {
+    color: #fff; /* Màu icon */
+}
+
+footer .social-icons li a:hover {
+    color: #ccc; /* Màu icon khi di chuột qua */
+}
+
+/* Style for product container */
+/* Thiết lập padding và margin mặc định cho toàn bộ trang */
+
+/* Kiểu cho sản phẩm */
+/* CSS cho container của sản phẩm */
+.product-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+/* CSS cho tiêu đề của sản phẩm */
+.product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* CSS cho hình ảnh của sản phẩm */
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* CSS cho giá của sản phẩm */
+.product-price {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* CSS cho nút mua sản phẩm */
+.buy-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #45a049;
+}
