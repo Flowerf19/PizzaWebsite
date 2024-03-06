@@ -13,4 +13,10 @@ function authenticated() {
         exit; // Chắc chắn dừng việc thực hiện mã PHP sau khi chuyển hướng
     }
 }
+function logged(){
+    if (isset($_SESSION['username'])) {
+        header("Location: index.php");
+        exit;
+    }
+}
 ?>

@@ -29,7 +29,8 @@ function find_all_categories()
 
     return confirm_query_result($result);
 }
-function insert_category($category) {
+function insert_category($category)
+{
     global $db;
 
     // Escape input to prevent SQL injection
@@ -54,7 +55,8 @@ function insert_category($category) {
 }
 
 
-function find_category_by_id($id) {
+function find_category_by_id($id)
+{
     global $db;
 
     $sql = "SELECT * FROM categories ";
@@ -65,7 +67,8 @@ function find_category_by_id($id) {
     mysqli_free_result($result);
     return $category; // returns an assoc. array
 }
-function update_category($category) {
+function update_category($category)
+{
     global $db;
 
     $sql = "UPDATE categories SET ";
@@ -78,12 +81,13 @@ function update_category($category) {
     return confirm_query_result($result);
 }
 
-function delete_category($category_id) {
+function delete_category($category_id)
+{
     global $db;
-    
+
     // Sanitize the input to prevent SQL injection
     $category_id = mysqli_real_escape_string($db, $category_id);
-    
+
     // Construct the SQL query
     $sql = "DELETE FROM categories ";
     $sql .= "WHERE id = '{$category_id}' ";
@@ -91,7 +95,7 @@ function delete_category($category_id) {
 
     // Perform the deletion
     $result = mysqli_query($db, $sql);
-    
+
     // Check if the deletion was successful
     if ($result && mysqli_affected_rows($db) == 1) {
         return true; // Deletion successful
@@ -187,25 +191,77 @@ function find_latest_pizzas($limit)
 }
 
 
-function find_products_pagination($limit, $offset) {
-    global $db;
+// Define a function to find products for the current page
+function find_products_pagination($limit, $offset)
+{
+    global $db; // Assuming $db is your database connection
 
-    // Construct the SQL query
-    $sql = "SELECT COUNT(*) AS total_count FROM products"; // Get the total count
-    $result_count = mysqli_query($db, $sql);
-    $row = mysqli_fetch_assoc($result_count);
-    $total_count = $row['total_count'];
+    $query = "SELECT * FROM products LIMIT $limit OFFSET $offset";
+    $result = mysqli_query($db, $query);
 
-    // Construct the SQL query for fetching products with pagination
-    $sql = "SELECT * FROM products ";
-    $sql .= "ORDER BY products_name ";
-    $sql .= "LIMIT {$limit} OFFSET {$offset}";
+    if (!$result) {
+        die("Product query failed: " . mysqli_error($db));
+    }
 
-    // Perform the query
-    $result = mysqli_query($db, $sql);
-
-    // Check if the query was successful
-    return array($result, $total_count);
+    return $result;
 }
 
-?>
+// lỗi
+function insertFeedback()
+{
+
+    global $db;
+
+    // Escape input to prevent SQL injection
+    $feedback = mysqli_real_escape_string($db, $feedback['title']);
+    $feedback = mysqli_real_escape_string($db, $feedback['name']);
+    $feedback = mysqli_real_escape_string($db, $feedback['title']);
+    $feedback = mysqli_real_escape_string($db, $feedback['name']);
+
+
+    $sql = "INSERT INTO categories ";
+    $sql .= "(category_name, Description) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $category_name . "',";
+    $sql .= "'" . $description . "'";
+    $sql .= ")";
+
+    $result = mysqli_query($db, $sql);
+    if (!$result) {
+        // Error handling if query fails
+        echo "Error: " . mysqli_error($db);
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function find_products_by_category($category_id)
+{
+    global $db; // Assuming $db is your database connection variable
+
+    $query = "SELECT * FROM products WHERE category_ID = {$category_id}";
+    $result = mysqli_query($db, $query);
+
+    if (!$result) {
+        die("Database query failed: " . mysqli_error($db));
+    }
+
+    return $result;
+}
+function function_details_Product($db, $product_id)
+{
+    $product_id = mysqli_real_escape_string($db, $product_id);
+    $query = "SELECT * FROM products WHERE id = $product_id";
+    $result = mysqli_query($db, $query);
+    return $result;
+}
+
+
+function search_all_product($db, $search_query)
+{
+    $search_query = mysqli_real_escape_string($db, $search_query);
+    $query = "SELECT * FROM products WHERE products_name LIKE '%$search_query%' OR description LIKE '%$search_query%' OR price LIKE '%$search_query%' OR size LIKE '%$search_query%' OR base LIKE '%$search_query%' OR cheese LIKE '%$search_query%'";
+    $result = mysqli_query($db, $query);
+    return $result;
+}

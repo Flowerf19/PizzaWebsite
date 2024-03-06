@@ -1,6 +1,11 @@
 <?php
 require_once('header.php');
 require_once('SQL/Function.php');
+
+// if(isset($_GET['query'])) {
+//     $search_query = $_GET['query'];
+//     $result = search_all_product($db, $search_query);
+// }
 ?>
 
 <body>
@@ -12,31 +17,29 @@ require_once('SQL/Function.php');
         </div>
         <div class="row">
             <?php
-            $latest_products_set = find_latest_pizzas(8); // Lấy 8 sản phẩm pizza mới nhất
+            $latest_products_set = find_latest_pizzas(4); 
             $count = mysqli_num_rows($latest_products_set);
             $products_per_row = 4; // Số lượng sản phẩm trên mỗi hàng
+
             $product_count = 0; // Đếm số lượng sản phẩm đã được hiển thị
 
-            while ($product_count < $count) {
-                echo '<div class="row">';
-                // Hiển thị mỗi hàng chứa 4 sản phẩm
-                for ($i = 0; $i < $products_per_row; $i++) {
-                    if ($product_count >= $count) {
-                        break; // Đã hiển thị hết tất cả sản phẩm
-                    }
-                    $product = mysqli_fetch_assoc($latest_products_set);
-                    echo '<div class="col-md-3">';
-                    echo '<div class="product">';
-                    echo '<h4>' . $product['products_name'] . '</h4>';
-                    echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
-                    echo '<p>Price: ' . $product['price'] . '</p>';
-                    echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
-                    echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
-                    echo '</div>';
-                    echo '</div>';
-                    $product_count++;
+            while ($product_count < $count && $product = mysqli_fetch_assoc($latest_products_set)) {
+                if ($product_count % $products_per_row == 0) {
+                    echo '<div class="row">';
                 }
+                echo '<div class="col-md-3">';
+                echo '<div class="product">';
+                echo '<h4>' . $product['products_name'] . '</h4>';
+                echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
+                echo '<p>Price: ' . $product['price'] . '</p>';
+                echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
+                echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
                 echo '</div>';
+                echo '</div>';
+                $product_count++;
+                if ($product_count % $products_per_row == 0 || $product_count == $count) {
+                    echo '</div>'; // Close the row after displaying 4 products or when reaching the end
+                }
             }
 
             mysqli_free_result($latest_products_set);
@@ -48,51 +51,45 @@ require_once('SQL/Function.php');
         <h2>ALL PIZZA</h2>
         <div class="row">
             <?php
-            // Định nghĩa các biến phân trang
-            $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Trang hiện tại
-            $products_per_page = 16; // Số lượng sản phẩm trên mỗi trang
+            // Define pagination variables
+            $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $products_per_page = 12;
+            $products_per_row = 4;
 
-            // Tính toán offset
+            // Calculate offset
             $offset = ($current_page - 1) * $products_per_page;
 
-            // Lấy sản phẩm cho trang hiện tại
+            // Get products for the current page
             $result_set = find_products_pagination($products_per_page, $offset);
-            if ($result_set) {
-                $product_set = $result_set[0]; // Get the product set
-                $count = $result_set[1]; // Get the total count of products
-                $product_count = 0; // Đếm số lượng sản phẩm đã được hiển thị
 
-                while ($product_count < $count && $product = mysqli_fetch_assoc($product_set)) {
-                    echo '<div class="row">';
-                    // Hiển thị mỗi hàng chứa 4 sản phẩm
-                    for ($i = 0; $i < $products_per_row; $i++) {
-                        if ($product_count >= $count) {
-                            break; // Đã hiển thị hết tất cả sản phẩm
-                        }
-                        echo '<div class="col-md-3">';
-                        echo '<div class="product">';
-                        echo '<h4>' . $product['products_name'] . '</h4>';
-                        echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
-                        echo '<p>Price: ' . $product['price'] . '</p>';
-                        echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
-                        echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
-                        echo '</div>';
-                        echo '</div>';
-                        $product_count++;
-                    }
+            // Display Products & Create Pagination
+            if ($result_set) {
+                // Output products
+                while ($product = mysqli_fetch_assoc($result_set)) {
+                    echo '<div class="col-md-3">';
+                    echo '<div class="product">';
+                    echo '<h4>' . $product['products_name'] . '</h4>';
+                    echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
+                    echo '<p>Price: ' . $product['price'] . '</p>';
+                    echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
+                    echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
+                    echo '</div>';
                     echo '</div>';
                 }
 
-                mysqli_free_result($product_set);
+                // Calculate total pages
+                $total_pages_query = "SELECT CEIL(COUNT(*) / $products_per_page) AS total_pages FROM products";
+                $total_pages_result = mysqli_query($db, $total_pages_query);
+                $total_pages_row = mysqli_fetch_assoc($total_pages_result);
+                $total_pages = $total_pages_row['total_pages'];
 
-                // Tạo các nút phân trang
-                $total_pages = ceil($count / $products_per_page); 
+                // Corrected Pagination
                 echo '<div class="pagination">';
                 if ($current_page > 1) {
                     echo '<a href="?page=' . ($current_page - 1) . '">Previous</a>';
                 }
                 for ($i = 1; $i <= $total_pages; $i++) {
-                    echo '<a href="?page=' . $i . '">' . $i . '</a>';
+                    echo '<a href="?page=' . $i . '" ' . ($current_page == $i ? 'class="active"' : '') . '>' . $i . '</a>';
                 }
                 if ($current_page < $total_pages) {
                     echo '<a href="?page=' . ($current_page + 1) . '">Next</a>';

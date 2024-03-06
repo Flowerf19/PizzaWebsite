@@ -5,15 +5,7 @@ require_once('SQL/Function.php');
 require_once('header.php');
 
 // Nếu người dùng đã đăng nhập, chuyển hướng đến trang chính
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
-    exit;
-}
-
-// Bao gồm tệp kết nối cơ sở dữ liệu và các chức năng
-
-
-
+logged();
 // Biến lưu trữ lỗi
 $errors = [];
 
