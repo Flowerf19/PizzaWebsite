@@ -1,5 +1,9 @@
 <?php
 include('SQL/Connect.php');
+require_once('Lib/intialize.php');
+require_once('SQL/Connect.php');
+require_once('SQL/Function.php');
+require_once('header.php');
 
 // Kiểm tra xem có ID của sản phẩm được chọn để chỉnh sửa không
 if (isset($_GET['id'])) {

@@ -1,4 +1,8 @@
 <?php
+require_once('Lib/intialize.php');
+require_once('SQL/Connect.php');
+require_once('SQL/Function.php');
+require_once('header.php');
 authenticated();
 require_once('SQL/Function.php');
 // Xác định hàm để xóa người dùng

@@ -1,7 +1,10 @@
 <?php
-authenticated();
 require_once('Lib/intialize.php');
+require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
+require_once('header.php');
+authenticated();
+
 
 // Check if the category ID is provided in the URL
 if (isset($_GET['id'])) {

@@ -2,22 +2,23 @@
 require_once('header.php');
 require_once('SQL/Function.php');
 
-// if(isset($_GET['query'])) {
-//     $search_query = $_GET['query'];
-//     $result = search_all_product($db, $search_query);
-// }
+if (isset($_GET['query'])) {
+    $search_query = $_GET['query'];
+    $result = search_all_product($db, $search_query);
+}
+
 ?>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>NEW PIZZA</h2>
+                <h2>New pizza now available!</h2>
             </div>
         </div>
         <div class="row">
             <?php
-            $latest_products_set = find_latest_pizzas(4); 
+            $latest_products_set = find_latest_pizzas(4);
             $count = mysqli_num_rows($latest_products_set);
             $products_per_row = 4; // Số lượng sản phẩm trên mỗi hàng
 
@@ -48,7 +49,9 @@ require_once('SQL/Function.php');
     </div>
 
     <div class="container">
-        <h2>ALL PIZZA</h2>
+        <div class="col-md-12">
+            <h2>All pizza varieties are now available!</h2>
+        </div>
         <div class="row">
             <?php
             // Define pagination variables
