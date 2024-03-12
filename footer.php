@@ -15,8 +15,8 @@
                         <li><a href="#">Home page</a></li>
                         <li><a href="#">Menu</a></li>
                         <li><a href="#">Online Booking</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="userRegister.php">Contact us</a></li>
+                        
+                        <li><a href="feedback_form.php">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -26,6 +26,7 @@
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                         <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        
                     </ul>
                 </div>
             </div>

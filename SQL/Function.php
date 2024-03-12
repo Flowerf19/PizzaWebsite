@@ -206,36 +206,6 @@ function find_products_pagination($limit, $offset)
     return $result;
 }
 
-// lỗi
-function insertFeedback()
-{
-
-    global $db;
-
-    // Escape input to prevent SQL injection
-    $feedback = mysqli_real_escape_string($db, $feedback['title']);
-    $feedback = mysqli_real_escape_string($db, $feedback['name']);
-    $feedback = mysqli_real_escape_string($db, $feedback['title']);
-    $feedback = mysqli_real_escape_string($db, $feedback['name']);
-
-
-    $sql = "INSERT INTO categories ";
-    $sql .= "(category_name, Description) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . $category_name . "',";
-    $sql .= "'" . $description . "'";
-    $sql .= ")";
-
-    $result = mysqli_query($db, $sql);
-    if (!$result) {
-        // Error handling if query fails
-        echo "Error: " . mysqli_error($db);
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function find_products_by_category($category_id)
 {
     global $db; // Assuming $db is your database connection variable
@@ -264,4 +234,29 @@ function search_all_product($db, $search_query)
     $query = "SELECT * FROM products WHERE products_name LIKE '%$search_query%' OR description LIKE '%$search_query%' OR price LIKE '%$search_query%' OR size LIKE '%$search_query%' OR base LIKE '%$search_query%' OR cheese LIKE '%$search_query%'";
     $result = mysqli_query($db, $query);
     return $result;
+}
+
+function find_user_by_id($id) {
+    global $db;
+
+    $sql = "SELECT * FROM users ";
+    $sql .= "WHERE id='" . $id . "'";
+    $result = mysqli_query($db, $sql);
+    confirm_query_result($result);
+    $user = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $user; // trả về một mảng kết hợp
+}
+
+function update_user($id, $username, $email) {
+    global $db;
+
+    $sql = "UPDATE users SET ";
+    $sql .= "username='" . $username . "', ";
+    $sql .= "email='" . $email . "' ";
+    $sql .= "WHERE id='" . $id . "' ";
+    $sql .= "LIMIT 1";
+
+    $result = mysqli_query($db, $sql);
+    return confirm_query_result($result);
 }

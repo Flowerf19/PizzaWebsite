@@ -1,13 +1,12 @@
 <?php
-// Include your database connection code
 require_once('SQL/Connect.php');
 require_once('header.php');
 
-
 $errors = [];
+$success_message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = db_connect(); // Use the db_connect function from Connect.php
+    $conn = db_connect();
 
     $name = mysqli_real_escape_string($conn, $_POST["name"]);
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
@@ -25,24 +24,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['message'] = 'Message is required';
     }
 
+   
+
     if (empty($errors)) {
         $sql = "INSERT INTO feedback (name, email, message) VALUES ('$name', '$email', '$message')";
         $result = mysqli_query($conn, $sql);
-
+    
         if (!$result) {
-            $errors['database'] = 'Database error: ' . mysqli_error($conn);
+            $errors['database'] = 'Lỗi cơ sở dữ liệu: ' . mysqli_error($conn);
+        } else {
+            // Xóa các trường nhập khi gửi thành công
+            $name = $email = $message = '';
+            $success_message = 'Gửi phản hồi thành công!';
+    
+            // Chuyển hướng người dùng trở lại trang hiện tại
+            header('Location: ' . $_SERVER['PHP_SELF']);
+            exit;
         }
     }
 
     db_disconnect($conn);
 }
-  
-  
-
 ?>
 
-
-<link rel="stylesheet" href="Css/style.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your existing head content here -->
+</head>
 <body>
     <h2 class="feedback-heading">Feedback Form</h2>
 
@@ -72,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="message" class="form-label">Message:</label>
         <textarea id="message" name="message" class="form-input <?php echo isset($errors['message']) ? 'error-input' : ''; ?>"><?php echo isset($_POST['message']) ? $_POST['message'] : ''; ?></textarea>
-        <?php if (isset($errors['message'])) : ?>
+<?php if (isset($errors['message'])) : ?>
             <p class="error"><?= $errors['message']; ?></p>
         <?php endif; ?>
 

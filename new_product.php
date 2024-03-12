@@ -1,9 +1,11 @@
 <?php
+require_once('SQL/Connect.php');
 require_once('Lib/intialize.php');
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
 require_once('header.php');
 authenticated();
+
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -41,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($base)) {
         $errors['base'] = 'base is required';
     }
-    if (empty($price)) {
-        $errors['price'] = 'price is required';
+    if (empty($cheese)) {
+        $errors['cheese'] = 'cheese is required';
     }
 
 
@@ -120,7 +122,7 @@ db_disconnect($db);
 
 
         label {
-            display: block;
+display: block;
             margin-bottom: 8px;
             color: #333;
         }
@@ -217,23 +219,19 @@ db_disconnect($db);
         <p class="error"><?= $errors['size']; ?></p>
     <?php endif; ?>
     <label for="base">base:</label>
-    <input type="text" id="base" name="base" value="<?php echo isset($_POST['base']) ? $_POST['base'] : ''; ?>">
+<input type="text" id="base" name="base" value="<?php echo isset($_POST['base']) ? $_POST['base'] : ''; ?>">
     <?php if (isset($errors['base'])) : ?>
         <p class="error"><?= $errors['base']; ?></p>
     <?php endif; ?>
-    <label for="cheese">Cheese:</label>
-    <select id="cheese" name="cheese" required>
-    <option value="" <?php echo empty($_POST['cheese']) ? 'selected' : ''; ?>>Select Cheese</option>
-    <option value="Mozzarella" <?php echo ($_POST['cheese'] === 'Mozzarella') ? 'selected' : ''; ?>>Mozzarella</option>
-    <option value="Cheddar" <?php echo ($_POST['cheese'] === 'Cheddar') ? 'selected' : ''; ?>>Cheddar</option>
-    </select>
-     <?php if (isset($errors['cheese'])) : ?>
-     <p class="error"><?= $errors['cheese']; ?></p>
+    <label for="cheese">cheese:</label>
+    <input type="text" id="cheese" name="cheese" value="<?php echo isset($_POST['cheese']) ? $_POST['cheese'] : ''; ?>">
+    <?php if (isset($errors['cheese'])) : ?>
+        <p class="error"><?= $errors['cheese']; ?></p>
     <?php endif; ?>
     <label for="price">price:</label>
     <input type="text" id="price" name="price" value="<?php echo isset($_POST['price']) ? $_POST['price'] : ''; ?>">
     <?php if (isset($errors['cheese'])) : ?>
-        <p class="error"><?= $errors['price']; ?></p>
+        <p class="error"><?= $errors['cheese']; ?></p>
     <?php endif; ?>
 
 

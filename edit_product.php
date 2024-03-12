@@ -1,9 +1,9 @@
 <?php
-include('SQL/Connect.php');
 require_once('Lib/intialize.php');
 require_once('SQL/Connect.php');
 require_once('SQL/Function.php');
 require_once('header.php');
+authenticated();
 
 // Kiểm tra xem có ID của sản phẩm được chọn để chỉnh sửa không
 if (isset($_GET['id'])) {
@@ -100,8 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 4px;
         }
 
-        input[type="submit"] {
-            background-color: #4caf50;
+        input[type="submit"] {/-strong/-heart:>:o:-((:-hbackground-color: #4caf50;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -161,10 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" name="base" value="<?php echo $product['base']; ?>"><br>
 
     <label for="cheese">Cheese:</label>
-    <select name="cheese" required>
-        <option value="Mozzarella">Mozzarella</option>
-        <option value="Cheddar">Cheddar</option>
-    </select><br>
+    <input type="text" name="cheese" value="<?php echo $product['cheese']; ?>"><br>
 
     <input type="submit" value="Update Product">
 </form>

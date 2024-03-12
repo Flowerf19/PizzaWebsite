@@ -10,7 +10,6 @@ if(isset($_GET['query'])) {
     $search_query = $_GET['query'];
     $result = search_all_product($db, $search_query);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ if(isset($_GET['query'])) {
         }
         header {
             background-color: #333;
-            color: #fff;
+            color: #000;
             padding: 20px 0;
             text-align: center;
         }
@@ -51,7 +50,7 @@ if(isset($_GET['query'])) {
             margin: 0 10px;
         }
         .main-menu li a {
-            color: #fff;
+            color: #000;
             text-decoration: none;
         }
         .container {
@@ -63,7 +62,13 @@ if(isset($_GET['query'])) {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
         .product {
+            width: calc(33.33% - 20px); /* 20px là tổng lề giữa các sản phẩm */
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
@@ -99,27 +104,26 @@ if(isset($_GET['query'])) {
 
     <div class="container">
         <h1>Search Results</h1>
-        <?php
-        if(isset($result) && mysqli_num_rows($result) > 0) {
-            while($product = mysqli_fetch_assoc($result)) {
-                echo '<div class="product">';
-                echo '<h2>' . $product['products_name'] . '</h2>';
-                echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
-                echo '<p>Description: ' . $product['description'] . '</p>';
-                echo '<p>Price: $' . $product['price'] . '</p>';
-                echo '<p>Size: ' . $product['size'] . ' inches</p>';
-                echo '<p>Base: ' . $product['base'] . '</p>';
-                echo '<p>Cheese: ' . $product['cheese'] . '</p>';
-                echo '</div>';
-
-                
+        <div class="product-container">
+            <?php
+            if(isset($result) && mysqli_num_rows($result) > 0) {
+                while($product = mysqli_fetch_assoc($result)) {
+                    echo '<div class="product">';
+                    echo '<h2>' . $product['products_name'] . '</h2>';
+                    echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
+                    echo '<p>Description: ' . $product['description'] . '</p>';
+                    echo '<p>Price: $' . $product['price'] . '</p>';
+                    echo '<p>Size: ' . $product['size'] . ' inches</p>';
+                    echo '<p>Base: ' . $product['base'] . '</p>';
+                    echo '<p>Cheese: ' . $product['cheese'] . '</p>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No results found.</p>';
             }
-        } else {
-            echo '<p>No results found.</p>';
-        }
-
-        echo "<button class='btn-back' type='button' onclick='history.go(-1)'>Back to Order</button>";
-        ?>
+            ?>
+        </div>
+        <button class="btn-back" type="button" onclick="history.go(-1)">Back to Order</button>
     </div>
         
 </body>
