@@ -6,35 +6,38 @@ require_once('header.php');
 authenticated();
 ?>
 <body>
-    <a href="newCategory.php">Create new category</a> <br><br>
-    <table class="list">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-  	    </tr>
-
-        <?php  
-        $category_set = find_all_categories();
-        $count = mysqli_num_rows($category_set);
-        for ($i = 0; $i < $count; $i++):
-            $category = mysqli_fetch_assoc($category_set); 
-            //alternative: mysqli_fetch_row($category_set) returns indexed array
-        ?>
+    <div class="categories-container">
+        <a href="newCategory.php" class="btn btn-primary">Create new category</a>
+        <br><br>
+        <table class="categories-list">
             <tr>
-                <td><?php echo $category['category_name']; ?></td>
-                <td><?php echo $category['Description']; ?></td>
-                <td><a href="<?php echo 'updateCategory.php?id='.$category['id']; ?>">Edit</a></td>
-                <td><a href="<?php echo 'deleteCategory.php?id='.$category['id']; ?>" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a></td>
+                <th class="category-header">Name</th>
+                <th class="category-header">Description</th>
+                <th class="category-header">&nbsp;</th>
+                <th class="category-header">&nbsp;</th>
             </tr>
-        <?php 
-        endfor; 
-        mysqli_free_result($category_set);
-        ?>
-    </table>
+
+            <?php  
+            $category_set = find_all_categories();
+            $count = mysqli_num_rows($category_set);
+            for ($i = 0; $i < $count; $i++):
+                $category = mysqli_fetch_assoc($category_set); 
+                //alternative: mysqli_fetch_row($category_set) returns indexed array
+            ?>
+                <tr class="category-row">
+                    <td class="category-data"><?php echo $category['category_name']; ?></td>
+                    <td class="category-data"><?php echo $category['Description']; ?></td>
+                    <td class="category-data"><a href="<?php echo 'updateCategory.php?id='.$category['id']; ?>" class="btn btn-secondary">Edit</a></td>
+                    <td class="category-data"><a href="<?php echo 'deleteCategory.php?id='.$category['id']; ?>" onclick="return confirm('Are you sure you want to delete this category?')" class="btn btn-danger">Delete</a></td>
+                </tr>
+            <?php 
+            endfor; 
+            mysqli_free_result($category_set);
+            ?>
+        </table>
+    </div>
 </body>
-</html>
+
 
 <?php
 require_once('footer.php');

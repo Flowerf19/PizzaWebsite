@@ -21,7 +21,7 @@ CREATE TABLE products (
 ); 
 
 ALTER TABLE products
-ADD COLUMN created_at DATETIME;
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 
 
 CREATE TABLE users (
@@ -46,69 +46,32 @@ VALUES
     ('NhatMinh', 'nhatminh@example.com', '123', 1),
     ('AnotherUser', 'anotheruser@example.com', '123', 1);
     
--- Example 1
+    
+
+-- Chèn dữ liệu cho classic pizzas
 INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Pepperoni Pizza', 1, 'Classic pepperoni pizza with tomato sauce and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
+VALUES
+    ('Classic Margherita', 1, 'Fresh tomatoes, mozzarella, basil', 9.99, 'image/c1.jpg', 12, 'Thin', 'Mozzarella'),
+    ('Classic Pepperoni', 1, 'Pepperoni, mozzarella, tomato sauce', 10.99, 'image/c2.jpg', 12, 'Original', 'Mozzarella'),
+    ('Classic Hawaiian', 1, 'Ham, pineapple, mozzarella, tomato sauce', 11.99, 'image/c3.jpg', 12, 'Original', 'Mozzarella'),
+    ('Classic Vegetarian', 1, 'Mushrooms, onions, bell peppers, olives, mozzarella', 11.99, 'image/c4.jpg', 12, 'Thin', 'Mozzarella'),
+    ('Classic BBQ Chicken', 1, 'Grilled chicken, BBQ sauce, mozzarella, onions', 12.99, 'image/c5.jpg', 12, 'Original', 'Mozzarella');
 
--- Example 2
+-- Chèn dữ liệu cho vegetarian pizzas
 INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Supreme Pizza', 2, 'Specialty pizza loaded with pepperoni, sausage, onions, peppers, and mushrooms', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
+VALUES
+    ('Veggie Delight', 2, 'Mixed vegetables, mozzarella, tomato sauce', 11.99, 'image/v1.jpg', 12, 'Thin', 'Mozzarella'),
+    ('Mushroom Lovers', 2, 'Mushrooms, mozzarella, garlic sauce', 10.99, 'image/v2.jpg', 12, 'Original', 'Mozzarella'),
+    ('Spinach and Feta', 2, 'Spinach, feta cheese, mozzarella, tomato sauce', 12.99, 'image/v3.jpg', 12, 'Original', 'Feta'),
+    ('Vegan Supreme', 2, 'Vegan cheese, bell peppers, onions, olives, tomato sauce', 12.99, 'image/v4.jpg', 12, 'Thin', 'Vegan cheese'),
+    ('Beyond Meat Feast', 2, 'Beyond Meat, vegan cheese, tomato sauce', 13.99, 'image/v5.jpg', 12, 'Original', 'Vegan cheese');
 
--- Example 3
+-- Chèn dữ liệu cho specialty pizzas
 INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Margherita Pizza', 1, 'Classic Margherita pizza with fresh tomato sauce, mozzarella cheese, and basil leaves', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
--- Example 4
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Vegetarian Pizza', 3, 'Vegetarian pizza topped with bell peppers, onions, olives, mushrooms, and tomatoes', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
--- Example 5
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('BBQ Chicken Pizza', 2, 'Specialty pizza featuring BBQ chicken, red onions, and cilantro', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
-
--- Example 6
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Hawaiian Pizza', 1, 'Classic Hawaiian pizza with ham, pineapple, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
--- Example 7
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Mushroom Pizza', 3, 'Vegetarian pizza topped with mushrooms, onions, and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
--- Example 8
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Meat Lover\'s Pizza', 2, 'Specialty pizza loaded with pepperoni, sausage, bacon, and ham', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
-
--- Example 9
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Cheese Pizza', 1, 'Classic cheese pizza with tomato sauce and mozzarella cheese', 9.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
--- Example 10
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES ('Veggie Delight Pizza', 3, 'Vegetarian pizza topped with bell peppers, onions, tomatoes, and black olives', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
-
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES 
-    ('Vegetable Pizza', 3, 'Vegetarian pizza topped with a variety of fresh vegetables', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Buffalo Chicken Pizza', 2, 'Specialty pizza featuring spicy buffalo chicken and blue cheese dressing', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('White Pizza', 1, 'Classic pizza made with garlic-infused olive oil, ricotta cheese, and spinach', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Barbecue Beef Pizza', 2, 'Specialty pizza topped with barbecue beef, red onions, and cheddar cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('Spinach and Feta Pizza', 3, 'Vegetarian pizza with spinach, feta cheese, onions, and black olives', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Meatball Pizza', 1, 'Classic pizza topped with homemade meatballs, marinara sauce, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Pesto Chicken Pizza', 2, 'Specialty pizza featuring pesto sauce, grilled chicken, sun-dried tomatoes, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('Four Cheese Pizza', 1, 'Classic pizza topped with a blend of four cheeses: mozzarella, cheddar, provolone, and parmesan', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Vegan Pizza', 3, 'Vegetarian pizza made with dairy-free cheese, assorted vegetables, and marinara sauce', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Vegan cheese'),
-    ('BBQ Pork Pizza', 2, 'Specialty pizza topped with barbecue pork, caramelized onions, and pineapple', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella');
-
-INSERT INTO products (products_name, category_ID, description, price, image_url, size, base, cheese)
-VALUES 
-    ('Mediterranean Pizza', 1, 'Classic pizza topped with roasted red peppers, olives, artichokes, feta cheese, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('BBQ Bacon Chicken Pizza', 2, 'Specialty pizza featuring barbecue sauce, bacon, grilled chicken, red onions, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('Pineapple and Jalapeno Pizza', 3, 'Vegetarian pizza with pineapple chunks, sliced jalapenos, marinara sauce, and mozzarella cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Chicken Pesto Pizza', 2, 'Specialty pizza topped with pesto sauce, grilled chicken, sun-dried tomatoes, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('Buffalo Cauliflower Pizza', 3, 'Vegetarian pizza with buffalo cauliflower, red onions, and ranch drizzle', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Artichoke and Olive Pizza', 1, 'Classic pizza topped with artichoke hearts, black olives, marinara sauce, and mozzarella cheese', 11.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella'),
-    ('Shrimp Scampi Pizza', 2, 'Specialty pizza featuring garlic butter shrimp, lemon zest, parsley, and mozzarella cheese', 12.99, 'image/pizza1.jpg', 14, 'Hand-tossed crust', 'Mozzarella'),
-    ('Eggplant Parmesan Pizza', 3, 'Vegetarian pizza with breaded eggplant slices, marinara sauce, and parmesan cheese', 10.99, 'image/pizza1.jpg', 12, 'Thin crust', 'Mozzarella');
-
+VALUES
+    ('Supreme Deluxe', 3, 'Pepperoni, sausage, bell peppers, onions, olives, mozzarella', 13.99, 'image/s1.jpg', 12, 'Original', 'Mozzarella'),
+    ('Seafood Sensation', 3, 'Shrimp, crab, garlic butter sauce, mozzarella', 14.99, 'image/s2.jpg', 12, 'Thin', 'Mozzarella'),
+    ('Meat Lover''s Dream', 3, 'Pepperoni, sausage, bacon, ham, mozzarella', 15.99, 'image/s3.jpg', 12, 'Original', 'Mozzarella'),
+    ('Spicy Inferno', 3, 'Spicy sausage, jalapenos, hot sauce, mozzarella', 12.99, 'image/s4.jpg', 12, 'Thin', 'Mozzarella'),
+    ('Mediterranean Magic', 3, 'Artichoke hearts, sun-dried tomatoes, feta cheese, mozzarella', 14.99, 'image/s5.jpg', 12, 'Original', 'Feta');
 

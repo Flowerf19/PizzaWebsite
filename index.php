@@ -30,11 +30,15 @@ if (isset($_GET['query'])) {
                 }
                 echo '<div class="col-md-3">';
                 echo '<div class="product">';
+                echo '<a href="productDetails.php?id=' . $product['id'] . '">';
                 echo '<h4>' . $product['products_name'] . '</h4>';
                 echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
                 echo '<p>Price: ' . $product['price'] . '</p>';
+                echo '</a>';
+                echo '<div class="text-center mt-3">';
                 echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
-                echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
+                echo '</div>';
+
                 echo '</div>';
                 echo '</div>';
                 $product_count++;
@@ -65,20 +69,25 @@ if (isset($_GET['query'])) {
             // Get products for the current page
             $result_set = find_products_pagination($products_per_page, $offset);
 
+
             // Display Products & Create Pagination
             if ($result_set) {
                 // Output products
                 while ($product = mysqli_fetch_assoc($result_set)) {
                     echo '<div class="col-md-3">';
                     echo '<div class="product">';
+                    echo '<a href="productDetails.php?id=' . $product['id'] . '">';
                     echo '<h4>' . $product['products_name'] . '</h4>';
                     echo '<img src="' . $product['image_url'] . '" alt="' . $product['products_name'] . '">';
                     echo '<p>Price: ' . $product['price'] . '</p>';
+                    echo '</a>';
+                    echo '<div class="text-center mt-3">';
                     echo '<a href="productDetails.php?id=' . $product['id'] . '"><i class="fa-solid fa-cart-shopping"></i></a>';
-                    echo '<a href="productDetails.php?id=' . $product['id'] . '">Details</a>';
+                    echo '</div>';
                     echo '</div>';
                     echo '</div>';
                 }
+
 
                 // Calculate total pages
                 $total_pages_query = "SELECT CEIL(COUNT(*) / $products_per_page) AS total_pages FROM products";
