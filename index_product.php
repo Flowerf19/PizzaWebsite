@@ -2,6 +2,9 @@
 // Include connect.php to establish database connection
 include('SQL/Connect.php');
 
+require_once('header.php');
+
+
 // Configuration for pagination
 $itemsPerPage = 10;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;

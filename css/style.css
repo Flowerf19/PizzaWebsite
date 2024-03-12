@@ -567,10 +567,6 @@ body {
     color: #333;
 }
 
-
-
-
-
 .categories-container {
     margin: 20px;
 }
@@ -649,4 +645,29 @@ body {
     color: #fff;
     background-color: #c9302c;
     border-color: #ac2925;
+}
+
+/* styles.css */
+
+.feedback-heading {
+    color: #333;
+}
+
+.feedback-form {
+    width: 400px;
+    margin: 20px auto;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

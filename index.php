@@ -87,8 +87,7 @@ if (isset($_GET['query'])) {
                     echo '</div>';
                     echo '</div>';
                 }
-
-
+                echo'<br>';
                 // Calculate total pages
                 $total_pages_query = "SELECT CEIL(COUNT(*) / $products_per_page) AS total_pages FROM products";
                 $total_pages_result = mysqli_query($db, $total_pages_query);
